@@ -53,7 +53,7 @@ class Searcher
         closed.push(currentNode.state.dup)
 
         #fringe = InsertAll(Expand(node, problem), fringe)
-        newNodes = expand(currentNode)
+        newNodes = expand_graph(currentNode)
         fringe.insert_all(newNodes)
       else
         #puts "!!Hey this state has been checked already!!"
@@ -62,13 +62,13 @@ class Searcher
     end #loop
   end #tree_search
 
-  def expand(parent)
+  def expand_graph(parent)
 
     #successors ← the empty set
     successors = Array.new
 
     #for each action, result in Successor-Fn(problem, State[node]) do
-    successor_function(parent).each do |state|
+    successor_function_graph(parent).each do |state|
 
       #s←a new Node
       #Parent-Node[s]←node;
@@ -87,7 +87,7 @@ class Searcher
     return successors
   end #expand
 
-  def successor_function(node)
+  def successor_function_graph(node)
 
     newStates = Array.new
     values = Array.new
@@ -96,7 +96,7 @@ class Searcher
     #false if move isnt possible
 
     up = node.upValue
-    if up != nil
+    if up != false
       #puts "Up works!"
       upState = node.up
       newStates.push(upState)
@@ -104,7 +104,7 @@ class Searcher
     end
 
     down = node.downValue
-    if down != nil
+    if down != false
       #puts "down works!"
       downState = node.down
       newStates.push(downState)
@@ -112,7 +112,7 @@ class Searcher
     end
 
     left = node.leftValue
-    if left != nil
+    if left != false
       #puts "left works!"
       leftState = node.left
       newStates.push(leftState)
@@ -120,7 +120,7 @@ class Searcher
     end
 
     right = node.rightValue
-    if right != nil
+    if right != false
       #puts "right works!"
       rightState = node.right
       newStates.push(rightState)
@@ -138,7 +138,7 @@ class Searcher
         end
       end
     end
-    
+
     return newStates
 
   end

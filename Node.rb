@@ -50,7 +50,7 @@ class Node
 
   def index_from_xy(x, y)
     if 0 > y or 0 > x or @@width <= y or @@width <= x
-      return nil
+      return false
     else
       return x + @@width * y;
     end
