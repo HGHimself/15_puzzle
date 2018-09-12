@@ -2,7 +2,7 @@
 
 ## To Run:
 ```ruby Puzzle.rb```
-</br>Choose which algorithm you would like to see run:
+</br> </br> Choose which algorithm you would like to see run:
 1. Depth-First
 2. Iterative-Deepening Search
 3. A* Search
