@@ -1,4 +1,4 @@
-require './Fringe'
+require './fringe'
 
 class SearchIDS
 
@@ -6,30 +6,30 @@ class SearchIDS
     @fringe = Fringe.new
   end
 
-  def depthLimitedSearch(init_state, fringe, goal_state, width)
-    recursiveDepthLimitedSearch()
+  def depthLimitedSearch(init_state, goal_state, limit)
+    recursiveDepthLimitedSearch(init_state, goal_state, limit)
   end
 
   def recursiveDepthLimitedSearch(init_state, goal_state, limit)
-    # fringe = Insert(Make-Node(Initial-State[problem]), fringe)
+    # @fringe = Insert(Make-Node(Initial-State[problem]), @fringe)
+
     initNode = Node.new(nil, 0, 0, init_state)
-    fringe.insert(initNode)
+    @fringe.insert(initNode)
 
     loop do
-      # when fringe is empty return failure
-      if fringe.empty
-        puts "Failure!"
+      # when @fringe is empty return failure
+      if @fringe.empty
         return nil
       end
 
-      # node = Remove-Front(fringe)
-      currentNode = fringe.remove_front
+      # node = Remove-Front(@fringe)
+      currentNode = @fringe.remove_front
 
       # Print statement to simplify view of execution
-      if fringe.size % 300 == 0
+      if @fringe.size % 300 == 0
         puts " "
         puts " "
-        puts "fringe size is #{fringe.size}"
+        puts "@fringe size is #{@fringe.size}"
         print_state(currentNode.state)
       end
 
@@ -37,32 +37,45 @@ class SearchIDS
       if goalTest(currentNode.state, goal_state)
         puts "Success!"
         return currentNode
-      elsif
-
+      elsif currentNode.depth = limit
+        return limit
       else
         loop do
           successor = expandTree(currentNode)
-          fringe.insert_all(successor)
+          @fringe.insert_all(successor)
 
-          # for each successor in expand(node, problem) do
-          result = recursiveDepthLimitedSearch(successor.each, problem, limit)
+          # each successor in expand(node, problem)
+          result = recursiveDepthLimitedSearch(successor.each, init_state, limit)
 
+          if result = cutoff
+            cutoffOccurred = true
+          else
+            if result != failure
+              return result
+            end
+          end
 
+          if cutoffOccurred?
+            return cutoff
+          else
+            return failure
+          end
+        end
       end
-
-
-
-    for
+    end
   end
 
-  def iterativeDeepeningSearch(init_state, fringe, goal_state, width)
+  def iterativeDeepeningSearch(init_state, goal_state)
     puts 'Running the puzzle using iterative deepening search!'
 
     depth = 0
     loop do
-      #when fringe is empty, return failure
-      result = depthLimitedSearch(problem, depth)
-
+      #when @fringe is empty, return failure
+      result = depthLimitedSearch(init_state, goal_state, depth)
+      if result != cutoff
+        return result
+      end
+    depth += 1
     end
   end
 
