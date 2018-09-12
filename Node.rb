@@ -58,7 +58,7 @@ class Node
 
   def swap1d(a, b, state)
     if a == b or a < 0 or b < 0 or a > @@size or b > @@size
-      puts "out of bounds!"
+      #puts "out of bounds!"
       return false
     else
       hold = state[a]
@@ -71,13 +71,13 @@ class Node
   def move(i, j)
     state = @state.dup
     if nil == i or nil == j
-      puts "bad indexes"
+      #puts "bad indexes"
       return false
     else
       if swap1d(i, j, state)
         return state
       else
-        puts "swap was bad"
+        #puts "swap was bad"
         return false
       end
     end
@@ -91,7 +91,11 @@ class Node
 
   def upValue
     i = index_from_xy(@x, @y - 1)
-    return state[i]
+    if i == false
+      return i
+    else
+      return state[i]
+    end
   end
 
   def down
@@ -102,7 +106,11 @@ class Node
 
   def downValue
     i = index_from_xy(@x, @y + 1)
-    return state[i]
+    if i == false
+      return i
+    else
+      return state[i]
+    end
   end
 
   def left
@@ -113,7 +121,11 @@ class Node
 
   def leftValue
     i = index_from_xy(@x - 1, @y)
-    return state[i]
+    if i == false
+      return i
+    else
+      return state[i]
+    end
   end
 
   def right
@@ -124,7 +136,11 @@ class Node
 
   def rightValue
     i = index_from_xy(@x + 1, @y)
-    return state[i]
+    if i == false
+      return i
+    else
+      return state[i]
+    end
   end
 
 end

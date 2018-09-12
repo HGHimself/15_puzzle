@@ -29,22 +29,24 @@ class Searcher
 
       #node = Remove-Front(fringe)
       currentNode = fringe.remove_front
-      puts " "
-      puts " "
-      puts "fringe size is #{fringe.size}"
-      print_state(currentNode.state)
+      if fringe.size % 300 == 0
+        puts " "
+        puts " "
+        puts "fringe size is #{fringe.size}"
+        print_state(currentNode.state)
+      end
 
       #if Goal-Test(problem,State[node]) then return node
       if goal_test(currentNode.state, goal_state)
         puts "~~We have a match~~"
         return currentNode
       else
-        puts "Not quite right yet"
+        #puts "Not quite right yet"
       end
 
       #if State[node] is not in closed then
       if !closed.include?(currentNode.state)
-        puts "well yall, we are going to expand"
+        #puts "well yall, we are going to expand"
         #add State[node] to closed
         #have to dupe! because you dont want just a pointer
         #this is very key here
@@ -54,7 +56,7 @@ class Searcher
         newNodes = expand(currentNode)
         fringe.insert_all(newNodes)
       else
-        puts "!!Hey this state has been checked already!!"
+        #puts "!!Hey this state has been checked already!!"
       end
 
     end #loop
@@ -89,32 +91,28 @@ class Searcher
 
     newStates = Array.new
 
-    #here we gotta check each possible move for this node
-    #node.direction returns a copy of the state after a move in said direction
-    #false if move isnt possible
-
-    upState = node.up
-    if upState != false
-      puts "Up works!"
-      newStates.push(upState)
+    down = node.down
+    if down != false
+      #puts "down works!"
+      newStates.push(down)
     end
 
-    downState = node.down
-    if downState != false
-      puts "Down works!"
-      newStates.push(downState)
+    right = node.right
+    if right != false
+      #puts "down works!"
+      newStates.push(right)
     end
 
-    leftState = node.left
-    if leftState != false
-      puts "Left works!"
-      newStates.push(leftState)
+    up = node.up
+    if up != false
+      #puts "down works!"
+      newStates.push(up)
     end
 
-    rightState = node.right
-    if rightState != false
-      puts "Right works!"
-      newStates.push(rightState)
+    left = node.left
+    if left != false
+      #puts "down works!"
+      newStates.push(left)
     end
 
     return newStates
@@ -125,7 +123,7 @@ class Searcher
     i = 0
     state.each do |s|
       if s != goal[i]
-        puts "its false!!"
+        #puts "its false!!"
         return false
       end
       i += 1
@@ -135,10 +133,16 @@ class Searcher
   end
 
   def print_state(state)
+    #puts "#{state[0]} #{state[1]} #{state[2]} #{state[3]}"
+    #puts "#{state[4]} #{state[5]} #{state[6]} #{state[7]}"
+    #puts "#{state[8]} #{state[9]} #{state[10]} #{state[11]}"
+    #puts "#{state[12]} #{state[13]} #{state[14]} #{state[15]}"
+
     puts "#{state[0]} #{state[1]} #{state[2]} #{state[3]}"
     puts "#{state[4]} #{state[5]} #{state[6]} #{state[7]}"
     puts "#{state[8]} #{state[9]} #{state[10]} #{state[11]}"
     puts "#{state[12]} #{state[13]} #{state[14]} #{state[15]}"
+
   end
 
 end #searcher class

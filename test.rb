@@ -1,34 +1,52 @@
 
 
-closed = Array.new
+=begin
+values = Array.new
+#here we gotta check each possible move for this node
+#node.direction returns a copy of the state after a move in said direction
+#false if move isnt possible
 
-node = [1,2,3,4,5,6]
+up = node.upValue
+if up != nil
+  #puts "Up works!"
+  upState = node.up
+  newStates.push(upState)
+  values.push(up)
+end
 
-node2 = [1,3,4,5]
+down = node.downValue
+if down != nil
+  #puts "down works!"
+  downState = node.down
+  newStates.push(downState)
+  values.push(down)
+end
 
+left = node.leftValue
+if left != nil
+  #puts "left works!"
+  leftState = node.left
+  newStates.push(leftState)
+  values.push(left)
+end
 
-#if State[node] is not in closed then
-if !closed.include?(node)
-  puts "node isnt in here"
-  #add State[node] to closed
-  #have to dupe! because you dont want just a pointer
-  closed.push(node.dup)
+right = node.rightValue
+if right != nil
+  #puts "right works!"
+  rightState = node.right
+  newStates.push(rightState)
+  values.push(right)
+end
 
-end #loop
-
-if !closed.include?(node2)
-  puts "node2 isnt in here"
-  #add State[node] to closed
-  #have to dupe! because you dont want just a pointer
-  closed.push(node2.dup)
-
-end #loop
-
-if !closed.include?(node2)
-  puts "node2 isnt in here"
-  #add State[node] to closed
-  #have to dupe! because you dont want just a pointer
-  closed.push(node2.dup)
-else
-  puts "node2 is in here now"
-end #loop
+swapped = true
+while swapped do
+  swapped = false
+  0.upto(values.size-2) do |i|
+    if values[i] < values[i+1]
+      values[i], values[i+1] = values[i+1], values[i] # swap values
+      newStates[i], newStates[i+1] = newStates[i+1], newStates[i] # swap values
+      swapped = true
+    end
+  end
+end
+=end

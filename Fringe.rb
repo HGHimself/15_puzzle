@@ -23,7 +23,7 @@ class Fringe
       return false
     else
       newNodes.each do |node|
-        puts "inserted"
+        #puts "inserted"
         insert(node)
       end
     end
@@ -83,13 +83,30 @@ class Fringe
     return @size
   end
 
+  def nodes
+    return @nodes
+  end
 
 end
 
 =begin
 fringe = Fringe.new
-array = [1,2,3,4,5,6,7,8]
+array = Array.new
+a = 1
+b = 2
+c = 3
+d = 4
+array.push(a)
+array.push(b)
+array.push(c)
+array.push(d)
 fringe.insert_all(array)
 
-puts fringe.remove_rear
+puts fringe.remove_front
+puts "-"
+
+fringe.nodes.each do |node|
+  puts node
+end
+
 =end
