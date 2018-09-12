@@ -1,5 +1,12 @@
 # 15 Puzzle
 
+## To Run:
+```ruby Puzzle.rb```
+Choose which algorithm you would like to see run:
+1. Depth-First
+2. Iterative-Deepening Search
+3. A* Search
+
 # Puzzle.rb
 This is where the whole program starts. to run it, navigate to the
 directory you have the file in and do ```ruby Puzzle.rb```
