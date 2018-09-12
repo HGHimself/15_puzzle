@@ -3,6 +3,7 @@ require './Node'
 class Fringe
   def initialize()
     @nodes = Array.new
+    @size = 0
   end
 
   #inserts individual node onto front of array
@@ -12,6 +13,7 @@ class Fringe
     else
       #append node onto front of fringe?
       @nodes.unshift(node)
+      @size += 1
     end
   end
 
@@ -55,6 +57,7 @@ class Fringe
     else
       #pop top off stack and return it
       return @nodes.shift
+      @size -= 1
     end
   end
 
@@ -74,6 +77,10 @@ class Fringe
     else
       return false
     end
+  end
+
+  def size
+    return @size
   end
 
 

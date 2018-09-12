@@ -17,141 +17,111 @@ class Searcher
     #closed = an empty set
     closed = Array.new
 
-    #fringe ← Insert(Make-Node(Initial-State[problem]), fringe)
-    root = Node.new(nil, 0, 0, init_state)
+    #fringe = Insert(Make-Node(Initial-State[problem]), fringe)
+    initNode = Node.new(nil, 0, 0, init_state)
+    fringe.insert(initNode)
 
-    flag = i = 0
-    init_state.each do |num|
-      #puts num
-      if num == 0
-        flag = i
-      end
-      i += 1
-    end
-
-    puts x = flag % width;
-    puts y = flag / width;
-
-    root.setup(width * width, width, x, y)
-    fringe.insert(root)
-    puts "Starting  LOOP"
-    loop do #this works ayy ruby is so cool
-      puts "in loop"
-
+    loop do
       #if fringe is empty then return failure
       if fringe.empty
         return nil
       end
 
-      #node ← Remove-Front(fringe)
-      nextNode = fringe.remove_front
-      puts ""
-      puts "-"
-      puts ""
-      print_state(nextNode.state)
-      puts "gonna test goal!"
-      #if Goal-Test(problem, State(node)) then return node
-      if goal_test(nextNode.state, goal_state)
-        return node
+      #node = Remove-Front(fringe)
+      currentNode = fringe.remove_front
+      puts " "
+      puts " "
+      puts "fringe size is #{fringe.size}"
+      print_state(currentNode.state)
+
+      #if Goal-Test(problem,State[node]) then return node
+      if goal_test(currentNode.state, goal_state)
+        puts "~~We have a match~~"
+        return currentNode
+      else
+        puts "Not quite right yet"
       end
 
       #if State[node] is not in closed then
-      if !closed.include?(nextNode.state)
-
+      if !closed.include?(currentNode.state)
+        puts "well yall, we are going to expand"
         #add State[node] to closed
-        closed.push(nextNode.state)
+        #have to dupe! because you dont want just a pointer
+        #this is very key here
+        closed.push(currentNode.state.dup)
 
-        #fringe ← InsertAll(Expand(node, problem), fringe)
-        newNodes = expand(nextNode)
-
-        newNodes.each do |n|
-          puts ""
-          puts "new node here!"
-          print_state(n.state)
-        end
+        #fringe = InsertAll(Expand(node, problem), fringe)
+        newNodes = expand(currentNode)
         fringe.insert_all(newNodes)
+      else
+        puts "!!Hey this state has been checked already!!"
       end
 
     end #loop
   end #tree_search
 
   def expand(parent)
-    puts "~inside expand~"
+
+    #successors ← the empty set
     successors = Array.new
 
-    states = successor_function(parent)
-    states.each do |state|
-      puts "**new state"
-      print_state(state)
-      puts "**new state"
+    #for each action, result in Successor-Fn(problem, State[node]) do
+    successor_function(parent).each do |state|
+
+      #s←a new Node
+      #Parent-Node[s]←node;
+      #Action[s]←action;
+      #State[s]←result
       #Path-Cost[s] ← Path-Cost[node] + Step-Cost(node, action, s)
       cost = parent.cost + 1
+      #Depth[s] ← Depth[node] + 1
       depth = parent.depth + 1
-      node = Node.new(parent, cost, depth, state)
-      puts "got a new node"
-      #add node to successors
-      successors.push(node)
+      s = Node.new(parent, cost, depth, state)
+
+      #add s to successors
+      successors.push(s)
     end
+
     return successors
   end #expand
 
   def successor_function(node)
 
-    successors = Array.new
+    newStates = Array.new
 
-    if node.up
-      puts"up works"
-      state = Array.new
-      node.state.each do |s|
-        state << s
-      end
-      print_state(state)
-      successors.push(state)
-      node.down
+    #here we gotta check each possible move for this node
+    #node.direction returns a copy of the state after a move in said direction
+    #false if move isnt possible
+
+    upState = node.up
+    if upState != false
+      puts "Up works!"
+      newStates.push(upState)
     end
 
-    if node.down
-      puts"down works"
-      state = Array.new
-      node.state.each do |s|
-        state << s
-      end
-      print_state(state)
-      successors.push(state)
-      node.up
-
+    downState = node.down
+    if downState != false
+      puts "Down works!"
+      newStates.push(downState)
     end
 
-    if node.left
-      puts"left works"
-      state = Array.new
-      node.state.each do |s|
-        state << s
-      end
-      print_state(state)
-      successors.push(state)
-      node.right
-
+    leftState = node.left
+    if leftState != false
+      puts "Left works!"
+      newStates.push(leftState)
     end
 
-    if node.right
-      puts"right works"
-      state = Array.new
-      node.state.each do |s|
-        state << s
-      end
-      print_state(state)
-      successors.push(state)
-      node.left
-
+    rightState = node.right
+    if rightState != false
+      puts "Right works!"
+      newStates.push(rightState)
     end
 
-    return successors
+    return newStates
 
   end
 
   def goal_test(state, goal)
-
     i = 0
     state.each do |s|
       if s != goal[i]
@@ -162,7 +132,6 @@ class Searcher
     end
     #no mismatches so we good
     return true
-
   end
 
   def print_state(state)
