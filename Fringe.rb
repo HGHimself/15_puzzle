@@ -21,6 +21,7 @@ class Fringe
       return false
     else
       newNodes.each do |node|
+        puts "inserted"
         insert(node)
       end
     end
@@ -28,7 +29,7 @@ class Fringe
 
   #adds individual node onto end of array
   def enqueue(node)
-    if nodes == nil
+    if node == nil
       return false
     else
       #append node onto front of fringe?
@@ -37,7 +38,7 @@ class Fringe
   end
 
   #adds all nodes onto end of array
-  def enqueue_all(newNode)
+  def enqueue_all(newNodes)
     if newNodes == nil
       return false
     else
@@ -77,3 +78,11 @@ class Fringe
 
 
 end
+
+=begin
+fringe = Fringe.new
+array = [1,2,3,4,5,6,7,8]
+fringe.insert_all(array)
+
+puts fringe.remove_rear
+=end

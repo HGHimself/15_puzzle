@@ -8,13 +8,13 @@ class Node
     @cost = cost
     @depth = depth
     @state = state
+    
   end
 
-  def setup(size, width, x, y)
+  def setup(size, width)
     @@size = size
     @@width = width
-    @x = x
-    @y = y
+
   end
 
   def parent
@@ -139,7 +139,6 @@ class Node
 
 end
 
-
 =begin
 state = [5,1,7,3,9,2,11,4,13,6,15,8,0,10,14,12]
 #  5  1  7  3
@@ -165,11 +164,7 @@ node = Node.new(nil, 0, 0, state)
 node.setup(state.size, width, x, y)
 
 
-if node.left != false
-  puts "good move"
-else
-  puts "Got a false"
-end
+
 
 state = node.state
 puts "#{state[0]} #{state[1]} #{state[2]} #{state[3]}"
