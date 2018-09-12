@@ -18,7 +18,11 @@ Only thing that goes on here is the input and goal states are created, objects a
 
 # Searcher.rb
 
-Here I just created a class that holds the code that is tree search oriented. The search_graph method is specific to my Depth first search algorithm. Other than that, the other methods should work for any algorithm being used. Maybe the expand method needs to be dirrefent because that add and removes nodes to the fringe(I have it LIFO if it works like I expect it to)
+Here I just created a class that holds the code that is tree search oriented. The search_graph method is specific to my Depth first search algorithm. Other than that, the other methods should work for any algorithm being used. Maybe the expand method needs to be dirrefent because that add and removes nodes to the fringe(I have it LIFO if it works like I expect it to). This section of the project was completed by HG King.
+
+# SearchIDS.rb
+
+This class holds the code that handles the iterative deepening search, and pulls in information from Fringe and Node. This section of the project was completed by Olivia Ledford.
 
 # Fringe.rb and Node.rb
 
