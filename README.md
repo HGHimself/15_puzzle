@@ -7,6 +7,8 @@
 2. Iterative-Deepening Search
 3. A* Search
 
+Watch as your results populate!
+
 # Puzzle.rb
 This is where the whole program starts. to run it, navigate to the
 directory you have the file in and do ```ruby Puzzle.rb```
