@@ -12,29 +12,29 @@ class Searcher
   #main function here
   #so far, thinking the init state will be array of integers representing the puzzle state
   #so will goal state
-  def graph_search(init_state, fringe, goal_state, width)
+  def graph_search(init_state, goal_state, width)
     puts "Starting the puzzle!"
     #closed = an empty set
     closed = Array.new
 
     #fringe = Insert(Make-Node(Initial-State[problem]), fringe)
     initNode = Node.new(nil, 0, 0, init_state)
-    fringe.insert(initNode)
+    @fringe.insert(initNode)
 
     loop do
       #if fringe is empty then return failure
-      if fringe.empty
+      if @fringe.empty
         return nil
       end
 
       #node = Remove-Front(fringe)
-      currentNode = fringe.remove_front
-      if fringe.size % 300 == 0
+      currentNode = @fringe.remove_front
+      #if @fringe.size % 300 == 0
         puts " "
         puts " "
-        puts "fringe size is #{fringe.size}"
+        puts "fringe size is #{@fringe.size}"
         print_state(currentNode.state)
-      end
+      #end
 
       #if Goal-Test(problem,State[node]) then return node
       if goal_test(currentNode.state, goal_state)
@@ -54,9 +54,9 @@ class Searcher
 
         #fringe = InsertAll(Expand(node, problem), fringe)
         newNodes = expand_graph(currentNode)
-        fringe.insert_all(newNodes)
+        @fringe.insert_all(newNodes)
       else
-        #puts "!!Hey this state has been checked already!!"
+        puts "!!Hey this state has been checked already!!"
       end
 
     end #loop
@@ -127,11 +127,13 @@ class Searcher
       values.push(right)
     end
 
+    #this bit takes the stack of new states and orders them
+    #right now with > the order goes from smaller to higher
     swapped = true
     while swapped do
       swapped = false
       0.upto(values.size-2) do |i|
-        if values[i] < values[i+1]
+        if values[i] > values[i+1]
           values[i], values[i+1] = values[i+1], values[i] # swap values
           newStates[i], newStates[i+1] = newStates[i+1], newStates[i] # swap values
           swapped = true
@@ -162,10 +164,10 @@ class Searcher
     #puts "#{state[8]} #{state[9]} #{state[10]} #{state[11]}"
     #puts "#{state[12]} #{state[13]} #{state[14]} #{state[15]}"
 
-    puts "#{state[0]} #{state[1]} #{state[2]} #{state[3]}"
-    puts "#{state[4]} #{state[5]} #{state[6]} #{state[7]}"
-    puts "#{state[8]} #{state[9]} #{state[10]} #{state[11]}"
-    puts "#{state[12]} #{state[13]} #{state[14]} #{state[15]}"
+    puts "#{state[0]} #{state[1]} #{state[2]}"
+    puts "#{state[3]} #{state[4]} #{state[5]}"
+    puts "#{state[6]} #{state[7]} #{state[8]} "
+    #puts "#{state[12]} #{state[13]} #{state[14]} #{state[15]}"
 
   end
 

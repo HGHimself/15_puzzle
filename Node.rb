@@ -16,9 +16,9 @@ class Node
     # range method
     (0..@@size).each do |n|
       if 0 == state[n]
-        @x = n % @@width;
+        puts @x = n % @@width;
         #stupid ruby returns n/w in simplest terms lol needs floor
-        @y = (n/@@width).floor;
+        puts @y = (n/@@width).floor;
       end
     end
 
@@ -57,8 +57,8 @@ class Node
   end
 
   def swap1d(a, b, state)
-    if a == b or a < 0 or b < 0 or a > @@size or b > @@size
-      #puts "out of bounds!"
+    if (a == b) or (0 > a) or (0 > b) or (@@size < a) or (@@size < b)
+      puts "out of bounds!"
       return false
     else
       hold = state[a]
@@ -70,14 +70,14 @@ class Node
 
   def move(i, j)
     state = @state.dup
-    if nil == i or nil == j
-      #puts "bad indexes"
+    if false == i or false == j
+      puts "bad indexes, cant make that move"
       return false
     else
       if swap1d(i, j, state)
         return state
       else
-        #puts "swap was bad"
+        puts "swap was bad"
         return false
       end
     end
@@ -146,18 +146,22 @@ class Node
 end
 
 =begin
-s = [5,1,7,3,9,2,11,4,13,6,15,8,0,10,14,12]
+state = [5,1,7,3,9,0,11,4,13,6,15,8,2,10,14,12]
+puts "#{state[0]} #{state[1]} #{state[2]} #{state[3]}"
+puts "#{state[4]} #{state[5]} #{state[6]} #{state[7]}"
+puts "#{state[8]} #{state[9]} #{state[10]} #{state[11]}"
+puts "#{state[12]} #{state[13]} #{state[14]} #{state[15]}"
 #  5  1  7  3
-#  9  2 11  4
+#  9  0 11  4
 # 13  6 15  8
-#  0 10 14 12
+#  2 10 14 12
 
 
 
-node = Node.new(nil, 0, 0, s)
+node = Node.new(nil, 0, 0, state)
 
 state = node.down
-if !state
+if state == false
   puts "didnt work yall"
 else
   puts "#{state[0]} #{state[1]} #{state[2]} #{state[3]}"

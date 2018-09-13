@@ -19,11 +19,13 @@ class Fringe
 
   #inserts all nodes onto front of array
   def insert_all(newNodes)
+    puts "inserting"
     if newNodes == nil
       return false
     else
       newNodes.each do |node|
-        #puts "inserted"
+        puts node.x
+        puts node.y
         insert(node)
       end
     end
@@ -90,18 +92,15 @@ class Fringe
 end
 
 =begin
-fringe = Fringe.new
-array = Array.new
-a = 1
-b = 2
-c = 3
-d = 4
-array.push(a)
-array.push(b)
-array.push(c)
-array.push(d)
-fringe.insert_all(array)
 
+fringe = Fringe.new
+array = [1,2,3,4]
+fringe.insert_all(array)
+fringe.insert(5)
+
+puts fringe.remove_front
+puts fringe.remove_front
+puts fringe.remove_front
 puts fringe.remove_front
 puts "-"
 
