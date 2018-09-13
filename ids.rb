@@ -13,11 +13,11 @@ class DepthLimitedSearcher
     @already_generated = 0
   end
 
-  def search
+  def searcher
     found_goal = dls
     return found_goal if found_goal
     @depth += @increment
-    search
+    searcher
   end
 
   def dls(node = @current, depth = @depth)
