@@ -1,5 +1,5 @@
 require_relative '15_puzzle'
-require_relative 'idfs'
+require_relative 'ids'
 
 goal_1   = ARGV[1] # or set this to a string with your own goal
 goal_val = PuzzleNode.parse_state(goal_1, true)
