@@ -1,4 +1,4 @@
-require_relative '15_puzzle'
+require_relative 'puzzleNode'
 require_relative 'ids'
 
 goal_1   = ARGV[1] # or set this to a string with your own goal
