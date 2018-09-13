@@ -31,13 +31,6 @@ class PuzzleNode
     states.shuffle
   end
 
-  def findPositionInGoal_position_in_goal num
-    goal = [[0, 1, 2, 3], [4, 5, 6, 7], [8, 9, 10, 11], [12, 13, 14, 15]]
-    row = goal.index { |row| row.include?(num) }
-    col = goal[row].index(num)
-    return row, col
-  end
-
   def moveBlankTo to_row, to_col, move
     val  = Marshal.load(Marshal.dump(@value))
     row_1, col_1 = @blank
