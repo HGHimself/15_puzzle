@@ -3,18 +3,33 @@
 
 # To Run Depth First Search:
 ### HG King
-```ruby Puzzle.rb```
+```
+ruby Puzzle.rb
+```
 
 Watch as your results populate!
 
 # To Run Iterative Depth First Search:
 ### Olivia Ledford
 This solution is run using ```ruby idsTester.rb "(initial state)" "(goal state)"```.
-</br> </br> You can also copy and paste **Problem One**:
-</br> ```ruby idsTester.rb "( (1 2 7 3) (5 6 11 4) (9 10 15 8) (13 14 12 0) (3 3) )" "( (1 2 3 4) (5 6 7 8) (9 10 11 12) (13 14 15 0) (3 3) )"```
-</br> </br> and **Problem Two**:
-</br> ```ruby idsTester.rb "( (5 1 7 3) (9 2 11 4) (13 6 15 8) (0 10 14 12) (0 3) )" "( (1 2 3 4) (5 6 7 8) (9 10 11 12) (13 14 15 0) (3 3) )"```
-</br> </br> You can also generate any problems you would like to test, as long as they hold this form, and fit the 15-puzzle size.
+
+You can also copy and paste either of the following:
+
+#### Problem One
+
+```sh
+ruby idsTester.rb "( (1 2 7 3) (5 6 11 4) (9 10 15 8) (13 14 12 0) (3 3) )" "( (1 2 3 4) (5 6 7 8) (9 10 11 12) (13 14 15 0) (3 3) )"
+```
+
+
+#### Problem Two:
+
+```sh
+ruby idsTester.rb "( (5 1 7 3) (9 2 11 4) (13 6 15 8) (0 10 14 12) (0 3) )" "( (1 2 3 4) (5 6 7 8) (9 10 11 12) (13 14 15 0) (3 3) )"
+```
+
+
+You can also generate any problems you would like to test, as long as they hold this form, and fit the 15-puzzle size.
 
 The last two digits, held in parentheses at the end of both the initial state and the goal state, represent the location on the 4x4 grid where the empty tile is held. It's also represented with a 0 in the initial and goal state strings as well.
 
