@@ -7,6 +7,7 @@ class Searcher
   def initialize
     #fringe is a class variable
     @fringe = Fringe.new
+    @fringeSize = 0
   end
 
   #main function here
@@ -29,23 +30,37 @@ class Searcher
 
       #node = Remove-Front(fringe)
       currentNode = @fringe.remove_front
-      #if @fringe.size % 300 == 0
-        puts " "
-        puts " "
-        puts "fringe size is #{@fringe.size}"
-        print_state(currentNode.state)
-      #end
-
-      #if Goal-Test(problem,State[node]) then return node
-      if goal_test(currentNode.state, goal_state)
-        puts "~~We have a match~~"
-        return currentNode
-      else
-        #puts "Not quite right yet"
-      end
 
       #if State[node] is not in closed then
       if !closed.include?(currentNode.state)
+        #if @fringe.size % 300 == 0
+          puts " "
+          puts " "
+          puts "fringe size is #{@fringe.size}"
+          if @fringeSize > @fringe.size
+            dif = @fringeSize - @fringe.size
+            puts "--fringe is down #{dif}--"
+          else
+            if @fringeSize < @fringe.size
+              dif = @fringe.size - @fringeSize
+              puts "++fringe is up #{dif}++"
+            else
+              puts "==fringe has stayed the same=="
+            end
+          end
+          print_state(currentNode.state)
+          @fringeSize = @fringe.size
+        #end
+
+        #if Goal-Test(problem,State[node]) then return node
+        #I added the goal test inside the if not in closed block
+        if goal_test(currentNode.state, goal_state)
+          puts "~~We have a match~~"
+          return currentNode
+        else
+          #puts "Not quite right yet"
+        end
+
         #puts "well yall, we are going to expand"
         #add State[node] to closed
         #have to dupe! because you dont want just a pointer
@@ -159,14 +174,14 @@ class Searcher
   end
 
   def print_state(state)
-    #puts "#{state[0]} #{state[1]} #{state[2]} #{state[3]}"
-    #puts "#{state[4]} #{state[5]} #{state[6]} #{state[7]}"
-    #puts "#{state[8]} #{state[9]} #{state[10]} #{state[11]}"
-    #puts "#{state[12]} #{state[13]} #{state[14]} #{state[15]}"
+    puts "#{state[0]} #{state[1]} #{state[2]} #{state[3]}"
+    puts "#{state[4]} #{state[5]} #{state[6]} #{state[7]}"
+    puts "#{state[8]} #{state[9]} #{state[10]} #{state[11]}"
+    puts "#{state[12]} #{state[13]} #{state[14]} #{state[15]}"
 
-    puts "#{state[0]} #{state[1]} #{state[2]}"
-    puts "#{state[3]} #{state[4]} #{state[5]}"
-    puts "#{state[6]} #{state[7]} #{state[8]} "
+    #puts "#{state[0]} #{state[1]} #{state[2]}"
+    #puts "#{state[3]} #{state[4]} #{state[5]}"
+    #puts "#{state[6]} #{state[7]} #{state[8]} "
     #puts "#{state[12]} #{state[13]} #{state[14]} #{state[15]}"
 
   end
