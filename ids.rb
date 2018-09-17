@@ -1,5 +1,4 @@
 require 'set'
-require_relative 'NodeCountError'
 
 class DepthLimitedSearcher
   attr_reader :num_nodes_visited, :open, :already_generated
