@@ -24,8 +24,8 @@ class Fringe
       return false
     else
       newNodes.each do |node|
-        puts node.x
-        puts node.y
+        #puts node.x
+        #puts node.y
         insert(node)
       end
     end
@@ -58,8 +58,9 @@ class Fringe
       return nil
     else
       #pop top off stack and return it
+      @size = @size - 1
       return @nodes.shift
-      @size -= 1
+
     end
   end
 
@@ -91,21 +92,19 @@ class Fringe
 
 end
 
-=begin
+
 
 fringe = Fringe.new
 array = [1,2,3,4]
 fringe.insert_all(array)
 fringe.insert(5)
-
+puts "fringe size is #{fringe.size}"
 puts fringe.remove_front
 puts fringe.remove_front
 puts fringe.remove_front
 puts fringe.remove_front
 puts "-"
-
+puts "fringe size is #{fringe.size}"
 fringe.nodes.each do |node|
   puts node
 end
-
-=end
