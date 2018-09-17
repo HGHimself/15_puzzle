@@ -3,18 +3,33 @@
 
 # To Run Depth First Search:
 ### HG King
-```ruby Puzzle.rb```
+```
+ruby Puzzle.rb
+```
 
 Watch as your results populate!
 
 # To Run Iterative Depth First Search:
 ### Olivia Ledford
 This solution is run using ```ruby idsTester.rb "(initial state)" "(goal state)"```.
-</br> </br> You can also copy and paste **Problem One**:
-</br> ```ruby idsTester.rb "( (1 2 7 3) (5 6 11 4) (9 10 15 8) (13 14 12 0) (3 3) )" "( (1 2 3 4) (5 6 7 8) (9 10 11 12) (13 14 15 0) (3 3) )"```
-</br> </br> and **Problem Two**:
-</br> ```ruby idsTester.rb "( (5 1 7 3) (9 2 11 4) (13 6 15 8) (0 10 14 12) (0 3) )" "( (1 2 3 4) (5 6 7 8) (9 10 11 12) (13 14 15 0) (3 3) )"```
-</br> </br> You can also generate any problems you would like to test, as long as they hold this form, and fit the 15-puzzle size.
+
+You can also copy and paste either of the following:
+
+#### Problem One
+
+```sh
+ruby idsTester.rb "( (1 2 7 3) (5 6 11 4) (9 10 15 8) (13 14 12 0) (3 3) )" "( (1 2 3 4) (5 6 7 8) (9 10 11 12) (13 14 15 0) (3 3) )"
+```
+
+
+#### Problem Two:
+
+```sh
+ruby idsTester.rb "( (5 1 7 3) (9 2 11 4) (13 6 15 8) (0 10 14 12) (0 3) )" "( (1 2 3 4) (5 6 7 8) (9 10 11 12) (13 14 15 0) (3 3) )"
+```
+
+
+You can also generate any problems you would like to test, as long as they hold this form, and fit the 15-puzzle size.
 
 The last two digits, held in parentheses at the end of both the initial state and the goal state, represent the location on the 4x4 grid where the empty tile is held. It's also represented with a 0 in the initial and goal state strings as well.
 
@@ -26,7 +41,7 @@ When the puzzle can't be solved in a reasonable workspace, deemed as 1,000,000 g
 
 **Problem One** is solveable under IDS - it outputs a solution of ```W N N N E S S S```, expands a total of 3529 nodes with 1725 of them being previously generated, and an exeuction time averaging 91.425 ms. The first 5 search nodes are **_THING_**.
 
-**Problem Two** times out under IDS - it obviously does not output a solution, it fails after expanding 1,000,000 nodes with **_X_** of them being previously generated, and has an execution time averaging **_Y_** ms. The first 5 search nodes are **_THING_**.
+**Problem Two** times out under IDS - it obviously does not output a solution, it fails after expanding 1,000,000 nodes with 699087 of them being previously generated, and has an execution time averaging 20840.194 ms. The first 5 search nodes are **_THING_**.
 
 # To Run A* Search
 ### Chris ??
@@ -51,4 +66,4 @@ These classes are just the basic object that searcher uses. Fringe is a fancy wr
 
 ### ids.rb, idsTester.rb, and puzzleNode.rb
 
-These classes hold the code that handles the iterative deepening search. ```puzzleNode.rb``` handles the creation of nodes using
+These classes hold the code that handles the iterative deepening search. ```puzzleNode.rb``` handles the creation and movement of nodes. It also parses the given input, ensuring that the given fringe is populated. This fringe, once created, is passed to ```ids.rb```, where the frontal node of the fringe is pulled, tested against the goal, and then 'moved' in the proper order. These movements are then recorded in a new tree so that it can be traveresed in the form of the solution. This solution was created on a 2013 Macbook Pro, with 8GB of RAM and 3.2gHz processor.

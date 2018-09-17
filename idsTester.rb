@@ -5,6 +5,8 @@ require_relative 'ids'
 goal_input   = ARGV[1]
 goal_val = PuzzleNode.parseState(goal_input, true)
 
+max_search_error = "Exeeded maximum of 1,000,000 nodes searched – no solution found"
+
 # Reads in the initial state from the command line and parses it
 start_input = ARGV[0]
 start_val = PuzzleNode.parseState(start_input, true)
@@ -42,12 +44,14 @@ puts ''
 puts '------- ITERATIVE DEEPENING DEPTH LIMITED SEARCH (Start Depth = 4, Increment = 1) --------'
 searchStrategy = DepthLimitedSearcher.new(start_node, goal_node, :generateStates, 4, 1)
 startTime = Time.now
-solution = searchStrategy.searcher
+possibleSolution = searchStrategy.searcher
+solution = (searchStrategy.num_nodes_visited < 1000000) ? possibleSolution : max_search_error
+time_elapsed = (Time.now - startTime) * 1000.0
 puts "| Solution: #{solution}"
 puts "| Number of nodes visted: #{searchStrategy.num_nodes_visited}"
 puts "| Size of open list: #{searchStrategy.open.size}"
 puts "| Number of nodes that were already generated: #{searchStrategy.already_generated}"
-puts "| Time taken: #{Time.now - startTime}s"
+puts "| Time taken: #{time_elapsed} ms"
 puts '------------------------------------------------------------------------------------------'
 
 
