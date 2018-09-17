@@ -39,9 +39,9 @@ The solution, when it is returned, is displayed as cardinal directions that demo
 
 When the puzzle can't be solved in a reasonable workspace, deemed as 1,000,000 generated nodes, it times out.
 
-**Problem One** is solveable under IDS - it outputs a solution of ```W N N N E S S S```, expands a total of 3529 nodes with 1725 of them being previously generated, and an exeuction time averaging 91.425 ms. The first 5 search nodes are **_THING_**.
+**Problem One** is solveable under IDS - this problem outputs a solution of ```W N N N E S S S```, expands a total of 3529 nodes, with 1725 of them being previously generated, and an exeuction time averaging 91.425 ms. The first 5 search nodes are **_THING_**.
 
-**Problem Two** times out under IDS - it obviously does not output a solution, it fails after expanding 1,000,000 nodes with 699087 of them being previously generated, and has an execution time averaging 20840.194 ms. The first 5 search nodes are **_THING_**.
+**Problem Two** times out under IDS - this problem does not output a solution. It fails after expanding 1,000,000 nodes, with 699087 of them being previously generated, and has an execution time averaging 20840.194 ms. The first 5 search nodes are **_THING_**.
 
 # To Run A* Search
 ### Chris ??
