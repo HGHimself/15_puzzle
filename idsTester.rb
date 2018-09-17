@@ -41,7 +41,7 @@ puts ' '
 puts 'Note that the 0 displayed in the above arrays is indicative of the empty tile in the 15 Puzzle.'
 puts ''
 
-puts '------- ITERATIVE DEEPENING DEPTH LIMITED SEARCH (Start Depth = 4, Increment = 1) --------'
+puts '------- ITERATIVE DEEPENING SEARCH (Start Depth = 4, Increment = 1) --------'
 searchStrategy = DepthLimitedSearcher.new(start_node, goal_node, :generateStates, 4, 1)
 startTime = Time.now
 possibleSolution = searchStrategy.searcher
@@ -52,6 +52,6 @@ puts "| Number of nodes visted: #{searchStrategy.num_nodes_visited}"
 puts "| Size of open list: #{searchStrategy.open.size}"
 puts "| Number of nodes that were already generated: #{searchStrategy.already_generated}"
 puts "| Time taken: #{time_elapsed} ms"
-puts '------------------------------------------------------------------------------------------'
+puts '----------------------------------------------------------------------------'
 
 
