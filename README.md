@@ -13,11 +13,14 @@ Watch as your results populate!
 
 # To Run Iterative Depth First Search:
 ### Olivia Ledford
-This solution is run using ```ruby idsTester.rb "(initial state)" "(goal state)"```.
+This solution is run using
+```sh
+ruby idsTester.rb "(initial state)" "(goal state)"
+```
 
 You can also copy and paste either of the following:
 
-#### Problem One
+#### Problem One:
 
 ```sh
 ruby idsTester.rb "( (1 2 7 3) (5 6 11 4) (9 10 15 8) (13 14 12 0) (3 3) )" "( (1 2 3 4) (5 6 7 8) (9 10 11 12) (13 14 15 0) (3 3) )"
@@ -27,7 +30,7 @@ ruby idsTester.rb "( (1 2 7 3) (5 6 11 4) (9 10 15 8) (13 14 12 0) (3 3) )" "( (
 #### Problem Two:
 
 ```sh
-ruby idsTester.rb "( (5 1 7 3) (9 2 11 4) (13 6 15 8) (0 10 14 12) (0 3) )" "( (1 2 3 4) (5 6 7 8) (9 10 11 12) (13 14 15 0) (3 3) )"
+ruby idsTester.rb "( (5 1 7 3) (9 2 11 4) (13 6 15 8) (0 10 14 12) (3 0) )" "( (1 2 3 4) (5 6 7 8) (9 10 11 12) (13 14 15 0) (3 3) )"
 ```
 
 
@@ -41,9 +44,69 @@ The solution, when it is returned, is displayed as cardinal directions that demo
 
 When the puzzle can't be solved in a reasonable workspace, deemed as 1,000,000 generated nodes, it times out.
 
-**Problem One** is solveable under IDS - this problem outputs a solution of ```W N N N E S S S```, expands a total of 3529 nodes, with 1725 of them being previously generated, and an exeuction time averaging 91.425 ms. The first 5 search nodes are **_THING_**.
+**Problem One** is solveable under IDS - this problem outputs a solution of ```W N N N E S S S```, expands a total of 3529 nodes, with 1725 of them being previously generated, and an exeuction time averaging 91.425 ms. The first 5 nodes expanded after the start state are as follows:
+  -  |    |    |    |    |
+     |----|----|----|----|
+     | 1  | 2  | 7  | 3  |
+     | 5  | 6  | 11 | 4  |
+     | 9  | 10 | 15 | 0  |
+     | 13 | 14 | 12 | 8  |
+  -  |    |    |    |    |
+     |----|----|----|----|
+     | 1  | 2  | 7  | 3  |
+     | 5  | 6  | 11 | 4  |
+     | 9  | 10 | 0  | 15 |
+     | 13 | 14 | 12 | 8  |
+  -  |    |    |    |    |
+     |----|----|----|----|
+     | 1  | 2  | 7  | 3  |
+     | 5  | 6  | 11 | 4  |
+     | 9  | 0  | 10 | 15 |
+     | 13 | 14 | 12 | 8  |
+  -  |    |    |    |    |
+     |----|----|----|----|
+     | 1  | 2  | 7  | 3  |
+     | 5  | 6  | 11 | 4  |
+     | 9  | 14 | 10 | 15 |
+     | 13 | 0  | 12 | 8  |
+  -  |    |    |    |    |
+     |----|----|----|----|
+     | 1  | 2  | 7  | 3  |
+     | 5  | 6  | 11 | 4  |
+     | 9  | 14 | 10 | 15 |
+     | 13 | 12 | 0  | 8  |
 
-**Problem Two** times out under IDS - this problem does not output a solution. It fails after expanding 1,000,000 nodes, with 699087 of them being previously generated, and has an execution time averaging 20840.194 ms. The first 5 search nodes are **_THING_**.
+**Problem Two** is solveable under IDS - this problem outputs a solution of ```N N N E S S S E N N N E S S S```, expands a total of 724,983 nodes, with 483,277 of them being previously generated, and an exeuction time averaging 16,792.683 ms. The first 5 nodes expanded after the start state are as follows:
+  -  |    |    |    |    |
+     |----|----|----|----|
+     | 5  | 1  | 7  | 3  |
+     | 9  | 2  | 11 | 4  |
+     | 13 | 6  | 15 | 8  |
+     | 10 | 0  | 14 | 12 |
+  -  |    |    |    |    |
+     |----|----|----|----|
+     | 5  | 1  | 7  | 3  |
+     | 9  | 2  | 11 | 4  |
+     | 13 | 6  | 15 | 8  |
+     | 10 | 14 | 0  | 12 |
+  -  |    |    |    |    |
+     |----|----|----|----|
+     | 5  | 1  | 7  | 3  |
+     | 9  | 2  | 11 | 4  |
+     | 13 | 6  | 0  | 8  |
+     | 10 | 14 | 15 | 12 |
+  -  |    |    |    |    |
+     |----|----|----|----|
+     | 5  | 1  | 7  | 3  |
+     | 9  | 2  | 11 | 4  |
+     | 13 | 6  | 8  | 0  |
+     | 10 | 14 | 15 | 12 |
+  -  |    |    |    |    |
+     |----|----|----|----|
+     | 5  | 1  | 7  | 3  |
+     | 9  | 2  | 11 | 4  |
+     | 13 | 6  | 8  | 12 |
+     | 10 | 14 | 15 | 0  |
 
 # To Run A* Search
 ### Chris Mitchell
@@ -157,7 +220,9 @@ These classes are just the basic object that searcher uses. Fringe is a fancy wr
 
 ### ids.rb, idsTester.rb, and puzzleNode.rb
 
-These classes hold the code that handles the iterative deepening search. ```puzzleNode.rb``` handles the creation and movement of nodes. It also parses the given input, ensuring that the given fringe is populated. This fringe, once created, is passed to ```ids.rb```, where the frontal node of the fringe is pulled, tested against the goal, and then 'moved' in the proper order. These movements are then recorded in a new tree so that it can be traveresed in the form of the solution. This solution was created on a 2013 Macbook Pro, with 8GB of RAM and 3.2gHz processor.
+These classes hold the code that handles the iterative deepening search. ```puzzleNode.rb``` handles the creation and movement of nodes. It also parses the given input, ensuring that the given fringe is populated. This fringe, once created, is passed to ```ids.rb```, where the frontal node of the fringe is pulled, tested against the goal, and then 'moved' in the proper order. These movements are then recorded in a new tree so that it can be traveresed in the form of the solution.
+
+This solution was created on a late 2013 Macbook Pro, with 8GB of RAM and 2.4 GHz Intel Core i5 processor.
 
 ### AStarPuzzle.rb, AStarFringe.rb, AStarNode.rb, & AStarSearcher.rb
 
