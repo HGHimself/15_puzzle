@@ -9,6 +9,8 @@ ruby Puzzle.rb
 
 Watch as your results populate!
 
+#### Problem 1
+
 # To Run Iterative Depth First Search:
 ### Olivia Ledford
 This solution is run using ```ruby idsTester.rb "(initial state)" "(goal state)"```.
@@ -159,6 +161,6 @@ These classes hold the code that handles the iterative deepening search. ```puzz
 
 ### AStarPuzzle.rb, AStarFringe.rb, AStarNode.rb, & AStarSearcher.rb
 
-These files are very similar to their non-A* counterparts, except they have been modified to better suit the implementation of the A* algorithm. One of the most notable changes is the inclusion of the ```.calculate_manhattan_distance(state, goal_state)``` method in ```AStarNode.rb```. This method allows any node to calculate the total Manhattan distance across all of its tiles given its current state and the goal state. Another notable method included for A* is the ```.sort``` method in ```AStarFringe.rb```. This method is used to sort the nodes in the fringe by their costs (which are calculated by adding the total Manhattan distance and the depth of a given node) so that A* expands nodes in the correct order. It is also important to note that, unlike the DFGS implementation, this algorithm is implemented as a *tree* search. As such, this algorithm does not include the logic used in DFGS to maintain a closed list. 
+These files are very similar to their non-A* counterparts, except they have been modified to better suit the implementation of the A* algorithm. One of the most notable changes is the inclusion of the ```.calculate_manhattan_distance(state, goal_state)``` method in ```AStarNode.rb```. This method allows any node to calculate the total Manhattan distance across all of its tiles given its current state and the goal state. Another notable method included for A* is the ```.sort``` method in ```AStarFringe.rb```. This method is used to sort the nodes in the fringe by their costs (which are calculated by adding the total Manhattan distance and the depth of a given node) so that A* expands nodes in the correct order. It is also important to note that, unlike the DFGS implementation, this algorithm is implemented as a *tree* search. As such, this algorithm does not include the logic used in DFGS to maintain a closed list.
 
 This solution was produced on an early 2015 Macbook Pro with 8GB of RAM and a 2.7 GHz Intel Core i5 processor.
