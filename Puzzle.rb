@@ -52,17 +52,18 @@ finishTime = Time.now
 totalTime = (finishTime - startTime) * 1000.0
 if node != nil
   state = node.state
-  puts "#{state[0]} #{state[1]} #{state[2]} #{state[3]}"
-  puts "#{state[4]} #{state[5]} #{state[6]} #{state[7]}"
-  puts "#{state[8]} #{state[9]} #{state[10]} #{state[11]}"
-  puts "#{state[12]} #{state[13]} #{state[14]} #{state[15]}"
+  puts "*#{state[0]} #{state[1]} #{state[2]} #{state[3]}"
+  puts "*#{state[4]} #{state[5]} #{state[6]} #{state[7]}"
+  puts "*#{state[8]} #{state[9]} #{state[10]} #{state[11]}"
+  puts "*#{state[12]} #{state[13]} #{state[14]} #{state[15]}"
 
-  puts "Time to complete was #{totalTime}ms."
+  puts "*Time to complete was #{totalTime}ms."
 else
-  puts "There is no solution for this configuration!!"
+  puts "***********************************************"
+  puts "*There is no solution for this configuration!!"
 end
 
-puts "Tracing back the moves"
+puts "*Tracing back the moves"
 
 nodes = Array.new
 
@@ -74,13 +75,15 @@ loop do
   end
   node = parent
 end
-
+stack = "*"
 nodes.each do |node|
   #puts " "
-  puts "#{node.action}, "
+  stack += "#{node.action}, "
   state = node.state
   #puts "#{state[0]} #{state[1]} #{state[2]} #{state[3]}"
   #puts "#{state[4]} #{state[5]} #{state[6]} #{state[7]}"
   #puts "#{state[8]} #{state[9]} #{state[10]} #{state[11]}"
   #puts "#{state[12]} #{state[13]} #{state[14]} #{state[15]}"
 end
+puts stack
+puts "***********************************************"

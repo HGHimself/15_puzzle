@@ -8,6 +8,8 @@ class Searcher
     #fringe is a class variable
     @fringe = Fringe.new
     @fringeSize = 0
+    @nodesChecked = 0
+    @dupesChecked = 0
   end
 
   #main function here
@@ -30,7 +32,7 @@ class Searcher
 
       #node = Remove-Front(fringe)
       currentNode = @fringe.remove_front
-
+      @nodesChecked += 1
       #if State[node] is not in closed then
       if !closed.include?(currentNode.state)
         if @fringe.size % 3 == 0
@@ -57,7 +59,11 @@ class Searcher
         #if Goal-Test(problem,State[node]) then return node
         #I added the goal test inside the if not in closed block
         if goal_test(currentNode.state, goal_state)
-          puts "~~We have a match~~"
+          puts "***********************************************"
+          puts "*~~We have a match~~"
+          puts "*Number of nodes checked: #{@nodesChecked}"
+          puts "*Number of duplicates checked: #{@dupesChecked}"
+          puts "*Number of nodes left in fringe: #{@fringeSize}"
           return currentNode
         else
           #puts "Not quite right yet"
@@ -73,6 +79,7 @@ class Searcher
         newNodes = expand_graph(currentNode)
         @fringe.insert_all(newNodes)
       else
+        @dupesChecked += 1
         #puts "!!Hey this state has been checked already!!"
       end
 

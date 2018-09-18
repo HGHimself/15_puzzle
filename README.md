@@ -17,6 +17,13 @@ The moves it uses to solve this puzzle are:
 W, N, N, N, E, S, S, S
 ```
 
+Other interesting data:
+```
+*Number of nodes checked: 12
+*Number of duplicates checked: 3
+*Number of nodes left in fringe: 9
+```
+
 #### Problem 2
 When prompted with a state choice and the user selects '2', this initial setup is chosen. This solution has yet to be reached on my computer. I have yet to reach a point where the fringe size begins to decline, even when the program has ran throughout the majority of a day. I believe because the depth of the full decision tree is an awfully large number so it will take forever to reach the bottom just in order to return back up and compute the other side of the tree.
 
