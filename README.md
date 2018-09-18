@@ -46,6 +46,7 @@ When the puzzle can't be solved in a reasonable workspace, deemed as 1,000,000 g
      | 5  | 6  | 11 | 4  |
      | 9  | 10 | 15 | 0  |
      | 13 | 14 | 12 | 8  |
+     |----|----|----|----|
   -
      |----|----|----|----|
      | 1  | 2  | 7  | 3  |
