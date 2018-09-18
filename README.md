@@ -71,7 +71,7 @@ When the puzzle can't be solved in a reasonable workspace, deemed as 1,000,000 g
      | 9  | 14 | 10 | 15 |
      | 13 | 12 | 0  | 8  |
 
-**Problem Two** is solveable under IDS - this problem outputs a solution of ```N N N E S S S E N N N E S S S```, expands a total of 724983 nodes, with 483277 of them being previously generated, and an exeuction time averaging 16792.683 ms. The first 5 nodes expanded after the start state are as follows:
+**Problem Two** is solveable under IDS - this problem outputs a solution of ```N N N E S S S E N N N E S S S```, expands a total of 724,983 nodes, with 483,277 of them being previously generated, and an exeuction time averaging 16,792.683 ms. The first 5 nodes expanded after the start state are as follows:
   -  |    |    |    |    |
      |----|----|----|----|
      | 5  | 1  | 7  | 3  |
@@ -83,25 +83,27 @@ When the puzzle can't be solved in a reasonable workspace, deemed as 1,000,000 g
      | 5  | 1  | 7  | 3  |
      | 9  | 2  | 11 | 4  |
      | 13 | 6  | 15 | 8  |
-     | 10 | 0  | 14 | 12 |
+     | 10 | 14 | 0  | 12 |
   -  |    |    |    |    |
      |----|----|----|----|
      | 5  | 1  | 7  | 3  |
      | 9  | 2  | 11 | 4  |
-     | 13 | 6  | 15 | 8  |
-     | 10 | 0  | 14 | 12 |
+     | 13 | 6  | 0  | 8  |
+     | 10 | 14 | 15 | 12 |
   -  |    |    |    |    |
      |----|----|----|----|
      | 5  | 1  | 7  | 3  |
      | 9  | 2  | 11 | 4  |
-     | 13 | 6  | 15 | 8  |
-     | 10 | 0  | 14 | 12 |
+     | 13 | 6  | 8  | 0  |
+     | 10 | 14 | 15 | 12 |
   -  |    |    |    |    |
      |----|----|----|----|
      | 5  | 1  | 7  | 3  |
      | 9  | 2  | 11 | 4  |
-     | 13 | 6  | 15 | 8  |
-     | 10 | 0  | 14 | 12 |
+     | 13 | 6  | 8  | 12 |
+     | 10 | 14 | 15 | 0  |
+
+**NOTE:** Problem Two outputs the same node 5 times in the beginning, an issue created
 
 # To Run A* Search
 ### Chris Mitchell
