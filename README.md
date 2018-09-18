@@ -1,5 +1,5 @@
 # 15 Puzzle
-### By HG King, Olivia Ledford, and Chris ??
+### By HG King, Olivia Ledford, and Chris Mitchell
 
 # To Run Depth First Search:
 ### HG King
@@ -44,8 +44,97 @@ When the puzzle can't be solved in a reasonable workspace, deemed as 1,000,000 g
 **Problem Two** times out under IDS - this problem does not output a solution. It fails after expanding 1,000,000 nodes, with 699087 of them being previously generated, and has an execution time averaging 20840.194 ms. The first 5 search nodes are **_THING_**.
 
 # To Run A* Search
-### Chris ??
-Info about A* here
+### Chris Mitchell
+To run A* search on the two test cases presented in the homework, simply run:
+```
+ruby AStarPuzzle.rb
+```
+
+This algorithm uses the total Manhattan distance as its heuristic function, and uses the depth of a node as the path cost to that node.
+
+At the end of each problem, the program returns the following metrics:
+* total number of nodes expanded
+* total number of moves in the final solution
+* sequence of moves in final solution
+  - Note that this sequence of moves is conveyed using the same conventions as described above for IDS.
+* first five nodes expanded by the algorithm (in order of expansion)
+* total time taken to find a solution
+
+The results of the algorithm can be summarized as follows:
+
+#### Problem One
+* **28** nodes expanded
+* **8** moves to solve
+* solution: **W N N N E S S S**
+* **4.11 ms** to solve
+* first five nodes expanded:
+  -  |    |    |    |    |
+     |----|----|----|----|
+     | 1  | 2  | 7  | 3  |
+     | 5  | 6  | 11 | 4  |
+     | 9  | 10 | 15 | 8  |
+     | 13 | 14 | 12 | 0  |
+  -  |    |    |    |    |
+     |----|----|----|----|
+     | 1  | 2  | 7  | 3  |
+     | 5  | 6  | 11 | 4  |
+     | 9  | 10 | 15 | 8  |
+     | 13 | 14 | 0  | 12 |
+  -  |    |    |    |    |
+     |----|----|----|----|
+     | 1  | 2  | 7  | 3  |
+     | 5  | 6  | 11 | 4  |
+     | 9  | 10 | 0  | 8  |
+     | 13 | 14 | 15 | 12 |
+  -  |    |    |    |    |
+     |----|----|----|----|
+     | 1  | 2  | 7  | 3  |
+     | 5  | 6  | 11 | 4  |
+     | 9  | 10 | 15 | 8  |
+     | 13 | 14 | 12 | 0  |
+  -  |    |    |    |    |
+     |----|----|----|----|
+     | 1  | 2  | 7  | 3  |
+     | 5  | 6  | 11 | 4  |
+     | 9  | 10 | 15 | 8  |
+     | 13 | 14 | 0  | 12 |
+
+#### Problem Two
+* **156** nodes expanded
+* **15** moves to solve
+* solution: **N N N E S S S E N N N E S S S**
+* **29.981 ms** to solve
+* first five nodes expanded:
+  -  |    |    |    |    |
+     |----|----|----|----|
+     | 5  | 1  | 7  | 3  |
+     | 9  | 2  | 11 | 4  |
+     | 13 | 6  | 15 | 8  |
+     | 0  | 10 | 14 | 12 |
+  -  |    |    |    |    |
+     |----|----|----|----|
+     | 5  | 1  | 7  | 3  |
+     | 9  | 2  | 11 | 4  |
+     | 0  | 6  | 15 | 8  |
+     | 13 | 10 | 14 | 12 |
+  -  |    |    |    |    |
+     |----|----|----|----|
+     | 5  | 1  | 7  | 3  |
+     | 9  | 2  | 11 | 4  |
+     | 13 | 6  | 15 | 8  |
+     | 10 | 0  | 14 | 12 |
+  -  |    |    |    |    |
+     |----|----|----|----|
+     | 5  | 1  | 7  | 3  |
+     | 9  | 2  | 11 | 4  |
+     | 13 | 6  | 15 | 8  |
+     | 10 | 14 | 0  | 12 |
+  -  |    |    |    |    |
+     |----|----|----|----|
+     | 5  | 1  | 7  | 3  |
+     | 9  | 2  | 11 | 4  |
+     | 13 | 6  | 0  | 8  |
+     | 10 | 14 | 15 | 12 |
 
 # About The Classes
 
@@ -58,7 +147,7 @@ Only thing that goes on here is the input and goal states are created, objects a
 
 ### Searcher.rb
 
-Here I just created a class that holds the code that is tree search oriented. The search_graph method is specific to my Depth first search algorithm. Other than that, the other methods should work for any algorithm being used. Maybe the expand method needs to be dirrefent because that add and removes nodes to the fringe(I have it LIFO if it works like I expect it to). This section of the project was completed by HG King.
+Here I just created a class that holds the code that is tree search oriented. The search_graph method is specific to my Depth first search algorithm. Other than that, the other methods should work for any algorithm being used. Maybe the expand method needs to be different because that add and removes nodes to the fringe(I have it LIFO if it works like I expect it to). This section of the project was completed by HG King.
 
 ### Fringe.rb and Node.rb
 
@@ -67,3 +156,9 @@ These classes are just the basic object that searcher uses. Fringe is a fancy wr
 ### ids.rb, idsTester.rb, and puzzleNode.rb
 
 These classes hold the code that handles the iterative deepening search. ```puzzleNode.rb``` handles the creation and movement of nodes. It also parses the given input, ensuring that the given fringe is populated. This fringe, once created, is passed to ```ids.rb```, where the frontal node of the fringe is pulled, tested against the goal, and then 'moved' in the proper order. These movements are then recorded in a new tree so that it can be traveresed in the form of the solution. This solution was created on a 2013 Macbook Pro, with 8GB of RAM and 3.2gHz processor.
+
+### AStarPuzzle.rb, AStarFringe.rb, AStarNode.rb, & AStarSearcher.rb
+
+These files are very similar to their non-A* counterparts, except they have been modified to better suit the implementation of the A* algorithm. One of the most notable changes is the inclusion of the ```.calculate_manhattan_distance(state, goal_state)``` method in ```AStarNode.rb```. This method allows any node to calculate the total Manhattan distance across all of its tiles given its current state and the goal state. Another notable method included for A* is the ```.sort``` method in ```AStarFringe.rb```. This method is used to sort the nodes in the fringe by their costs (which are calculated by adding the total Manhattan distance and the depth of a given node) so that A* expands nodes in the correct order. It is also important to note that, unlike the DFGS implementation, this algorithm is implemented as a *tree* search. As such, this algorithm does not include the logic used in DFGS to maintain a closed list. 
+
+This solution was produced on an early 2015 Macbook Pro with 8GB of RAM and a 2.7 GHz Intel Core i5 processor.
