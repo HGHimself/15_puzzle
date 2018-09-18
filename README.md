@@ -103,8 +103,6 @@ When the puzzle can't be solved in a reasonable workspace, deemed as 1,000,000 g
      | 13 | 6  | 8  | 12 |
      | 10 | 14 | 15 | 0  |
 
-**NOTE:** Problem Two outputs the same node 5 times in the beginning, an issue created
-
 # To Run A* Search
 ### Chris Mitchell
 To run A* search on the two test cases presented in the homework, simply run:
