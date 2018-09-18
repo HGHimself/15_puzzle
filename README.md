@@ -25,7 +25,7 @@ ruby idsTester.rb "( (1 2 7 3) (5 6 11 4) (9 10 15 8) (13 14 12 0) (3 3) )" "( (
 #### Problem Two:
 
 ```sh
-ruby idsTester.rb "( (5 1 7 3) (9 2 11 4) (13 6 15 8) (0 10 14 12) (0 3) )" "( (1 2 3 4) (5 6 7 8) (9 10 11 12) (13 14 15 0) (3 3) )"
+ruby idsTester.rb "( (5 1 7 3) (9 2 11 4) (13 6 15 8) (0 10 14 12) (3 0) )" "( (1 2 3 4) (5 6 7 8) (9 10 11 12) (13 14 15 0) (3 3) )"
 ```
 
 
@@ -46,7 +46,6 @@ When the puzzle can't be solved in a reasonable workspace, deemed as 1,000,000 g
      | 5  | 6  | 11 | 4  |
      | 9  | 10 | 15 | 0  |
      | 13 | 14 | 12 | 8  |
-
   -  |    |    |    |    |
      |----|----|----|----|
      | 1  | 2  | 7  | 3  |
@@ -72,7 +71,37 @@ When the puzzle can't be solved in a reasonable workspace, deemed as 1,000,000 g
      | 9  | 14 | 10 | 15 |
      | 13 | 12 | 0  | 8  |
 
-**Problem Two** times out under IDS - this problem does not output a solution. It fails after expanding 1,000,000 nodes, with 699087 of them being previously generated, and has an execution time averaging 20840.194 ms. The first 5 search nodes are **_THING_**.
+**Problem Two** is solveable under IDS - this problem outputs a solution of ```N N N E S S S E N N N E S S S```, expands a total of 724983 nodes, with 483277 of them being previously generated, and an exeuction time averaging 16792.683 ms. The first 5 nodes expanded after the start state are as follows:
+  -  |    |    |    |    |
+     |----|----|----|----|
+     | 5  | 1  | 7  | 3  |
+     | 9  | 2  | 11 | 4  |
+     | 13 | 6  | 15 | 8  |
+     | 10 | 0  | 14 | 12 |
+  -  |    |    |    |    |
+     |----|----|----|----|
+     | 5  | 1  | 7  | 3  |
+     | 9  | 2  | 11 | 4  |
+     | 13 | 6  | 15 | 8  |
+     | 10 | 0  | 14 | 12 |
+  -  |    |    |    |    |
+     |----|----|----|----|
+     | 5  | 1  | 7  | 3  |
+     | 9  | 2  | 11 | 4  |
+     | 13 | 6  | 15 | 8  |
+     | 10 | 0  | 14 | 12 |
+  -  |    |    |    |    |
+     |----|----|----|----|
+     | 5  | 1  | 7  | 3  |
+     | 9  | 2  | 11 | 4  |
+     | 13 | 6  | 15 | 8  |
+     | 10 | 0  | 14 | 12 |
+  -  |    |    |    |    |
+     |----|----|----|----|
+     | 5  | 1  | 7  | 3  |
+     | 9  | 2  | 11 | 4  |
+     | 13 | 6  | 15 | 8  |
+     | 10 | 0  | 14 | 12 |
 
 # To Run A* Search
 ### Chris Mitchell
