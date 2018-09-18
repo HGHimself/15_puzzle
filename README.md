@@ -39,7 +39,38 @@ The solution, when it is returned, is displayed as cardinal directions that demo
 
 When the puzzle can't be solved in a reasonable workspace, deemed as 1,000,000 generated nodes, it times out.
 
-**Problem One** is solveable under IDS - this problem outputs a solution of ```W N N N E S S S```, expands a total of 3529 nodes, with 1725 of them being previously generated, and an exeuction time averaging 91.425 ms. The first 5 search nodes are **_THING_**.
+**Problem One** is solveable under IDS - this problem outputs a solution of ```W N N N E S S S```, expands a total of 3529 nodes, with 1725 of them being previously generated, and an exeuction time averaging 91.425 ms. The first 5 nodes expanded after the start state are as follows:
+* first five nodes expanded:
+  -  |    |    |    |    |
+     |----|----|----|----|
+     | 1  | 2  | 7  | 3  |
+     | 5  | 6  | 11 | 4  |
+     | 9  | 10 | 15 | 0  |
+     | 13 | 14 | 12 | 8  |
+  -  |    |    |    |    |
+     |----|----|----|----|
+     | 1  | 2  | 7  | 3  |
+     | 5  | 6  | 11 | 4  |
+     | 9  | 10 | 0  | 15 |
+     | 13 | 14 | 12 | 8  |
+  -  |    |    |    |    |
+     |----|----|----|----|
+     | 1  | 2  | 7  | 3  |
+     | 5  | 6  | 11 | 4  |
+     | 9  | 0  | 10 | 15 |
+     | 13 | 14 | 12 | 8  |
+  -  |    |    |    |    |
+     |----|----|----|----|
+     | 1  | 2  | 7  | 3  |
+     | 5  | 6  | 11 | 4  |
+     | 9  | 14 | 10 | 15 |
+     | 13 | 0  | 12 | 8  |
+  -  |    |    |    |    |
+     |----|----|----|----|
+     | 1  | 2  | 7  | 3  |
+     | 5  | 6  | 11 | 4  |
+     | 9  | 14 | 10 | 15 |
+     | 13 | 12 | 0  | 8  |
 
 **Problem Two** times out under IDS - this problem does not output a solution. It fails after expanding 1,000,000 nodes, with 699087 of them being previously generated, and has an execution time averaging 20840.194 ms. The first 5 search nodes are **_THING_**.
 
@@ -159,6 +190,6 @@ These classes hold the code that handles the iterative deepening search. ```puzz
 
 ### AStarPuzzle.rb, AStarFringe.rb, AStarNode.rb, & AStarSearcher.rb
 
-These files are very similar to their non-A* counterparts, except they have been modified to better suit the implementation of the A* algorithm. One of the most notable changes is the inclusion of the ```.calculate_manhattan_distance(state, goal_state)``` method in ```AStarNode.rb```. This method allows any node to calculate the total Manhattan distance across all of its tiles given its current state and the goal state. Another notable method included for A* is the ```.sort``` method in ```AStarFringe.rb```. This method is used to sort the nodes in the fringe by their costs (which are calculated by adding the total Manhattan distance and the depth of a given node) so that A* expands nodes in the correct order. It is also important to note that, unlike the DFGS implementation, this algorithm is implemented as a *tree* search. As such, this algorithm does not include the logic used in DFGS to maintain a closed list. 
+These files are very similar to their non-A* counterparts, except they have been modified to better suit the implementation of the A* algorithm. One of the most notable changes is the inclusion of the ```.calculate_manhattan_distance(state, goal_state)``` method in ```AStarNode.rb```. This method allows any node to calculate the total Manhattan distance across all of its tiles given its current state and the goal state. Another notable method included for A* is the ```.sort``` method in ```AStarFringe.rb```. This method is used to sort the nodes in the fringe by their costs (which are calculated by adding the total Manhattan distance and the depth of a given node) so that A* expands nodes in the correct order. It is also important to note that, unlike the DFGS implementation, this algorithm is implemented as a *tree* search. As such, this algorithm does not include the logic used in DFGS to maintain a closed list.
 
 This solution was produced on an early 2015 Macbook Pro with 8GB of RAM and a 2.7 GHz Intel Core i5 processor.
