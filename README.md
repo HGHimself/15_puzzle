@@ -10,6 +10,15 @@ ruby Puzzle.rb
 Watch as your results populate!
 
 #### Problem 1
+When prompted with a state choice and the user selects '1', this initial setup is chosen. The Depth First Search solves this in 2.134ms with 13 nodes in the fringe.
+
+The moves it uses to solve this puzzle are:
+```
+W, N, N, N, E, S, S, S
+```
+
+#### Problem 2
+When prompted with a state choice and the user selects '2', this initial setup is chosen. This solution has yet to be reached on my computer. I have yet to reach a point where the fringe size begins to decline, even when the program has ran throughout the majority of a day. I believe because the depth of the full decision tree is an awfully large number so it will take forever to reach the bottom just in order to return back up and compute the other side of the tree.
 
 # To Run Iterative Depth First Search:
 ### Olivia Ledford

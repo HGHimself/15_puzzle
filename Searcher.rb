@@ -33,7 +33,7 @@ class Searcher
 
       #if State[node] is not in closed then
       if !closed.include?(currentNode.state)
-        #if @fringe.size % 3 == 0
+        if @fringe.size % 3 == 0
           puts " "
           puts " "
           puts currentNode.action
@@ -52,7 +52,7 @@ class Searcher
           end
           print_state(currentNode.state)
           @fringeSize = @fringe.size
-        #end
+        end
 
         #if Goal-Test(problem,State[node]) then return node
         #I added the goal test inside the if not in closed block
@@ -117,7 +117,7 @@ class Searcher
 
     up = node.upValue
     if up != false
-      puts "Up works!"
+      #puts "Up works!"
       upState = node.up
       newStates.push(upState)
       values.push(up)
@@ -126,7 +126,7 @@ class Searcher
 
     down = node.downValue
     if down != false
-      puts "down works!"
+      #puts "down works!"
       downState = node.down
       newStates.push(downState)
       values.push(down)
@@ -135,20 +135,20 @@ class Searcher
 
     left = node.leftValue
     if left != false
-      puts "left works!"
+      #puts "left works!"
       leftState = node.left
       newStates.push(leftState)
       values.push(left)
-      actions.push('E')
+      actions.push('W')
     end
 
     right = node.rightValue
     if right != false
-      puts "right works!"
+      #puts "right works!"
       rightState = node.right
       newStates.push(rightState)
       values.push(right)
-      actions.push('W')
+      actions.push('E')
     end
 
     #this bit takes the stack of new states and orders them
