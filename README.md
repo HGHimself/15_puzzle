@@ -40,32 +40,32 @@ The solution, when it is returned, is displayed as cardinal directions that demo
 When the puzzle can't be solved in a reasonable workspace, deemed as 1,000,000 generated nodes, it times out.
 
 **Problem One** is solveable under IDS - this problem outputs a solution of ```W N N N E S S S```, expands a total of 3529 nodes, with 1725 of them being previously generated, and an exeuction time averaging 91.425 ms. The first 5 nodes expanded after the start state are as follows:
-  -
+  -  |    |    |    |    |
      |----|----|----|----|
      | 1  | 2  | 7  | 3  |
      | 5  | 6  | 11 | 4  |
      | 9  | 10 | 15 | 0  |
      | 13 | 14 | 12 | 8  |
-     |----|----|----|----|
-  -
+
+  -  |    |    |    |    |
      |----|----|----|----|
      | 1  | 2  | 7  | 3  |
      | 5  | 6  | 11 | 4  |
      | 9  | 10 | 0  | 15 |
      | 13 | 14 | 12 | 8  |
-  -
+  -  |    |    |    |    |
      |----|----|----|----|
      | 1  | 2  | 7  | 3  |
      | 5  | 6  | 11 | 4  |
      | 9  | 0  | 10 | 15 |
      | 13 | 14 | 12 | 8  |
-  -
+  -  |    |    |    |    |
      |----|----|----|----|
      | 1  | 2  | 7  | 3  |
      | 5  | 6  | 11 | 4  |
      | 9  | 14 | 10 | 15 |
      | 13 | 0  | 12 | 8  |
-  -
+  -  |    |    |    |    |
      |----|----|----|----|
      | 1  | 2  | 7  | 3  |
      | 5  | 6  | 11 | 4  |
