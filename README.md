@@ -144,10 +144,10 @@ At the end of each problem, the program returns the following metrics:
 The results of the algorithm can be summarized as follows:
 
 #### Problem One
-* **28** nodes expanded
+* **19** nodes expanded
 * **8** moves to solve
 * solution: **W N N N E S S S**
-* **4.11 ms** to solve
+* **2.912 ms** to solve
 * first five nodes expanded:
   -  |    |    |    |    |
      |----|----|----|----|
@@ -161,6 +161,12 @@ The results of the algorithm can be summarized as follows:
      | 5  | 6  | 11 | 4  |
      | 9  | 10 | 15 | 8  |
      | 13 | 14 | 0  | 12 |
+  -  |    |    |    |    |
+     |----|----|----|----|
+     | 1  | 2  | 7  | 3  |
+     | 5  | 6  | 11 | 4  |
+     | 9  | 10 | 15 | 8  |
+     | 13 | 14 | 12 | 0  |
   -  |    |    |    |    |
      |----|----|----|----|
      | 1  | 2  | 7  | 3  |
@@ -171,20 +177,14 @@ The results of the algorithm can be summarized as follows:
      |----|----|----|----|
      | 1  | 2  | 7  | 3  |
      | 5  | 6  | 11 | 4  |
-     | 9  | 10 | 15 | 8  |
-     | 13 | 14 | 12 | 0  |
-  -  |    |    |    |    |
-     |----|----|----|----|
-     | 1  | 2  | 7  | 3  |
-     | 5  | 6  | 11 | 4  |
-     | 9  | 10 | 15 | 8  |
-     | 13 | 14 | 0  | 12 |
+     | 9  | 10 | 8  | 0  |
+     | 13 | 14 | 15 | 12 |
 
 #### Problem Two
-* **156** nodes expanded
+* **64** nodes expanded
 * **15** moves to solve
 * solution: **N N N E S S S E N N N E S S S**
-* **29.981 ms** to solve
+* **10.553 ms** to solve
 * first five nodes expanded:
   -  |    |    |    |    |
      |----|----|----|----|
@@ -192,12 +192,6 @@ The results of the algorithm can be summarized as follows:
      | 9  | 2  | 11 | 4  |
      | 13 | 6  | 15 | 8  |
      | 0  | 10 | 14 | 12 |
-  -  |    |    |    |    |
-     |----|----|----|----|
-     | 5  | 1  | 7  | 3  |
-     | 9  | 2  | 11 | 4  |
-     | 0  | 6  | 15 | 8  |
-     | 13 | 10 | 14 | 12 |
   -  |    |    |    |    |
      |----|----|----|----|
      | 5  | 1  | 7  | 3  |
@@ -214,8 +208,14 @@ The results of the algorithm can be summarized as follows:
      |----|----|----|----|
      | 5  | 1  | 7  | 3  |
      | 9  | 2  | 11 | 4  |
-     | 13 | 6  | 0  | 8  |
-     | 10 | 14 | 15 | 12 |
+     | 13 | 6  | 15 | 8  |
+     | 10 | 14 | 12 | 0  |
+  -  |    |    |    |    |
+     |----|----|----|----|
+     | 5  | 1  | 7  | 3  |
+     | 9  | 2  | 11 | 4  |
+     | 0  | 6  | 15 | 8  |
+     | 13 | 10 | 14 | 12 |
 
 # About The Classes
 
