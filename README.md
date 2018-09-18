@@ -11,7 +11,8 @@ Watch as your results populate!
 
 # To Run Iterative Depth First Search:
 ### Olivia Ledford
-This solution is run using ```sh
+This solution is run using
+```sh
 ruby idsTester.rb "(initial state)" "(goal state)"
 ```
 
