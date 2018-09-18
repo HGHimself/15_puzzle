@@ -211,7 +211,9 @@ These classes are just the basic object that searcher uses. Fringe is a fancy wr
 
 ### ids.rb, idsTester.rb, and puzzleNode.rb
 
-These classes hold the code that handles the iterative deepening search. ```puzzleNode.rb``` handles the creation and movement of nodes. It also parses the given input, ensuring that the given fringe is populated. This fringe, once created, is passed to ```ids.rb```, where the frontal node of the fringe is pulled, tested against the goal, and then 'moved' in the proper order. These movements are then recorded in a new tree so that it can be traveresed in the form of the solution. This solution was created on a 2013 Macbook Pro, with 8GB of RAM and 3.2gHz processor.
+These classes hold the code that handles the iterative deepening search. ```puzzleNode.rb``` handles the creation and movement of nodes. It also parses the given input, ensuring that the given fringe is populated. This fringe, once created, is passed to ```ids.rb```, where the frontal node of the fringe is pulled, tested against the goal, and then 'moved' in the proper order. These movements are then recorded in a new tree so that it can be traveresed in the form of the solution.
+
+This solution was created on a late 2013 Macbook Pro, with 8GB of RAM and 2.4 GHz Intel Core i5 processor.
 
 ### AStarPuzzle.rb, AStarFringe.rb, AStarNode.rb, & AStarSearcher.rb
 
