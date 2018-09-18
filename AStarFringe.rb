@@ -99,6 +99,14 @@ class Fringe
     end
   end
 
+  # def newSort
+  #   if empty
+  #     return nil
+  #   else
+  #     @nodes.sort_by { |node.movedTile, node.cost| [node.cost, node.movedTile] }
+  #   end
+  # end
+  
   def print_costs
     @nodes.each {|node| print "#{node.cost}", " - "}
   end

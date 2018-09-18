@@ -5,15 +5,18 @@ class AStarNode
   #class variable
   @@size
 
-  def initialize(parent, cost, depth, state, goal_state, moves = '')
+  def initialize(parent, cost, depth, state, goal_state, tileMoved, moves = '')
     @@size = state.size
     @@width = Math.sqrt(@@size)
     @parent = parent
     @depth = depth
+    @tileMoved = tileMoved
     # For this A* search, the heuristic is the manhattan distance and the
     # path cost is the depth (assuming the travel cost between each node
     # is one achieves the same effect)
-    @cost = depth + calculate_manhattan_distance(state, goal_state)
+    # Also note that including the tileMoved in the cost means that the algorithm
+    # will prioritize moving lower-number tiles over higher-number tiles.
+    @cost = ((depth + calculate_manhattan_distance(state, goal_state)) * 100) + (@tileMoved)
     @state = state
     # Used to keep track of moves to arrive at a given state
     @moves = moves
@@ -101,6 +104,10 @@ class AStarNode
         return false
       end
     end
+  end
+
+  def get_tile_value(dx, dy)
+    return state[index_from_xy(@x + dx, @y + dy)]
   end
 
   def up

@@ -21,7 +21,7 @@ class Searcher
     # Closed list is not required since this is a tree search.
 
     # Initialize the first node from which the search will be conducted.
-    initNode = AStarNode.new(nil, 0, 0, init_state, goal_state)
+    initNode = AStarNode.new(nil, 0, 0, init_state, goal_state, 0)
     @fringe.insert(initNode)
 
     record_nodes_for_report = 0
@@ -76,6 +76,7 @@ class Searcher
 
     newStates = Array.new
     newMoves = Array.new
+    tilesMoved = Array.new
     #here we gotta check each possible move for this node
     #node.direction returns a copy of the state after a move in said direction
     #false if move isnt possible
@@ -85,6 +86,7 @@ class Searcher
       upState = parent.up
       newStates.push(upState)
       newMoves.push(up)
+      tilesMoved.push(parent.get_tile_value(0,-1))
     end
 
     down = parent.downValue
@@ -92,6 +94,7 @@ class Searcher
       downState = parent.down
       newStates.push(downState)
       newMoves.push(down)
+      tilesMoved.push(parent.get_tile_value(0,1))
     end
 
     left = parent.leftValue
@@ -99,6 +102,7 @@ class Searcher
       leftState = parent.left
       newStates.push(leftState)
       newMoves.push(left)
+      tilesMoved.push(parent.get_tile_value(-1,0))
     end
 
     right = parent.rightValue
@@ -106,21 +110,22 @@ class Searcher
       rightState = parent.right
       newStates.push(rightState)
       newMoves.push(right)
+      tilesMoved.push(parent.get_tile_value(1,0))
     end
 
     #this bit takes the stack of new states and orders them
     #right now with > the order goes from smaller to higher
-    swapped = true
-    while swapped do
-      swapped = false
-      0.upto(newMoves.size-2) do |i|
-        if newMoves[i] > newMoves[i+1]
-          newMoves[i], newMoves[i+1] = newMoves[i+1], newMoves[i] # swap values
-          newStates[i], newStates[i+1] = newStates[i+1], newStates[i] # swap values
-          swapped = true
-        end
-      end
-    end
+    # swapped = true
+    # while swapped do
+    #   swapped = false
+    #   0.upto(newMoves.size-2) do |i|
+    #     if newMoves[i] > newMoves[i+1]
+    #       newMoves[i], newMoves[i+1] = newMoves[i+1], newMoves[i] # swap values
+    #       newStates[i], newStates[i+1] = newStates[i+1], newStates[i] # swap values
+    #       swapped = true
+    #     end
+    #   end
+    # end
 
     (0..newStates.size - 1).each do |i|
       #s←a new Node
@@ -132,7 +137,8 @@ class Searcher
       depth = parent.depth + 1
       moves = parent.moves + newMoves[i]
       state = newStates[i]
-      s = AStarNode.new(parent, cost, depth, state, goal_state, moves)
+      movedTile = tilesMoved[i]
+      s = AStarNode.new(parent, cost, depth, state, goal_state, movedTile, moves)
 
       #add s to successors
       successors.push(s)
