@@ -5,20 +5,21 @@ class Node
   #class variable
   @@size
 
-  def initialize(parent, cost, depth, state)
+  def initialize(parent, cost, depth, state, action)
     @parent = parent
     @cost = cost
     @depth = depth
     @state = state
+    @action = action
     @@size = state.size
     @@width = Math.sqrt(@@size)
 
     # range method
     (0..@@size).each do |n|
       if 0 == state[n]
-        puts @x = n % @@width;
+        @x = n % @@width;
         #stupid ruby returns n/w in simplest terms lol needs floor
-        puts @y = (n/@@width).floor;
+        @y = (n/@@width).floor;
       end
     end
 
@@ -40,6 +41,10 @@ class Node
     return @state
   end
 
+  def action
+    return @action
+  end
+
   def x
     return @x
   end
@@ -58,7 +63,7 @@ class Node
 
   def swap1d(a, b, state)
     if (a == b) or (0 > a) or (0 > b) or (@@size < a) or (@@size < b)
-      puts "out of bounds!"
+      #puts "out of bounds!"
       return false
     else
       hold = state[a]
@@ -71,13 +76,13 @@ class Node
   def move(i, j)
     state = @state.dup
     if false == i or false == j
-      puts "bad indexes, cant make that move"
+      #puts "bad indexes, cant make that move"
       return false
     else
       if swap1d(i, j, state)
         return state
       else
-        puts "swap was bad"
+        #puts "swap was bad"
         return false
       end
     end

@@ -8,6 +8,8 @@ class Searcher
     #fringe is a class variable
     @fringe = Fringe.new
     @fringeSize = 0
+    @nodesChecked = 0
+    @dupesChecked = 0
   end
 
   #main function here
@@ -19,7 +21,7 @@ class Searcher
     closed = Array.new
 
     #fringe = Insert(Make-Node(Initial-State[problem]), fringe)
-    initNode = Node.new(nil, 0, 0, init_state)
+    initNode = Node.new(nil, 0, 0, init_state, "0")
     @fringe.insert(initNode)
 
     loop do
@@ -30,12 +32,13 @@ class Searcher
 
       #node = Remove-Front(fringe)
       currentNode = @fringe.remove_front
-
+      @nodesChecked += 1
       #if State[node] is not in closed then
       if !closed.include?(currentNode.state)
-        #if @fringe.size % 300 == 0
+        if @fringe.size % 3 == 0
           puts " "
           puts " "
+          puts currentNode.action
           puts "fringe size is #{@fringe.size}"
           if @fringeSize > @fringe.size
             dif = @fringeSize - @fringe.size
@@ -45,17 +48,22 @@ class Searcher
               dif = @fringe.size - @fringeSize
               puts "++fringe is up #{dif}++"
             else
+              #this should never run because the fringe will always pop 1 off
               puts "==fringe has stayed the same=="
             end
           end
           print_state(currentNode.state)
           @fringeSize = @fringe.size
-        #end
+        end
 
         #if Goal-Test(problem,State[node]) then return node
         #I added the goal test inside the if not in closed block
         if goal_test(currentNode.state, goal_state)
-          puts "~~We have a match~~"
+          puts "***********************************************"
+          puts "*~~We have a match~~"
+          puts "*Number of nodes checked: #{@nodesChecked}"
+          puts "*Number of duplicates checked: #{@dupesChecked}"
+          puts "*Number of nodes left in fringe: #{@fringeSize}"
           return currentNode
         else
           #puts "Not quite right yet"
@@ -71,7 +79,8 @@ class Searcher
         newNodes = expand_graph(currentNode)
         @fringe.insert_all(newNodes)
       else
-        puts "!!Hey this state has been checked already!!"
+        @dupesChecked += 1
+        #puts "!!Hey this state has been checked already!!"
       end
 
     end #loop
@@ -83,20 +92,22 @@ class Searcher
     successors = Array.new
 
     #for each action, result in Successor-Fn(problem, State[node]) do
-    successor_function_graph(parent).each do |state|
-
+    states, actions = successor_function_graph(parent)
+    i = 0
+    states.each do |state|
       #s←a new Node
       #Parent-Node[s]←node;
       #Action[s]←action;
+      action = actions[i]
       #State[s]←result
       #Path-Cost[s] ← Path-Cost[node] + Step-Cost(node, action, s)
       cost = parent.cost + 1
       #Depth[s] ← Depth[node] + 1
       depth = parent.depth + 1
-      s = Node.new(parent, cost, depth, state)
-
+      s = Node.new(parent, cost, depth, state, action)
       #add s to successors
       successors.push(s)
+      i += 1
     end
 
     return successors
@@ -106,6 +117,7 @@ class Searcher
 
     newStates = Array.new
     values = Array.new
+    actions = Array.new
     #here we gotta check each possible move for this node
     #node.direction returns a copy of the state after a move in said direction
     #false if move isnt possible
@@ -116,6 +128,7 @@ class Searcher
       upState = node.up
       newStates.push(upState)
       values.push(up)
+      actions.push('N')
     end
 
     down = node.downValue
@@ -124,6 +137,7 @@ class Searcher
       downState = node.down
       newStates.push(downState)
       values.push(down)
+      actions.push('S')
     end
 
     left = node.leftValue
@@ -132,6 +146,7 @@ class Searcher
       leftState = node.left
       newStates.push(leftState)
       values.push(left)
+      actions.push('W')
     end
 
     right = node.rightValue
@@ -140,6 +155,7 @@ class Searcher
       rightState = node.right
       newStates.push(rightState)
       values.push(right)
+      actions.push('E')
     end
 
     #this bit takes the stack of new states and orders them
@@ -150,13 +166,14 @@ class Searcher
       0.upto(values.size-2) do |i|
         if values[i] > values[i+1]
           values[i], values[i+1] = values[i+1], values[i] # swap values
+          actions[i], actions[i+1] = actions[i+1], actions[i] # swap values
           newStates[i], newStates[i+1] = newStates[i+1], newStates[i] # swap values
           swapped = true
         end
       end
     end
 
-    return newStates
+    return newStates, actions
 
   end
 

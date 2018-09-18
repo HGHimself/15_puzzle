@@ -10,18 +10,23 @@ class PuzzleNode
     @blank = blank
   end
 
+  # fringe = Insert(Make-Node(Initial-State[problem]), fringe)
   def self.parseState state, value_only = false
-    # Yay for Ruby one liners
+    # Yay for Ruby one-liners
+    # Parses the given input into the square format map.
     array = state.split(/[ \(\)]+/).reject{|e| e == ""}.map(&:to_i)
     squares = array[0..-3].each_slice(4).to_a
     blank = array[-2..-1]
     if value_only
       squares
     else
+      # I've applied this parser to solutions that require a heuristic,
+      # but the heuristic is useless here.
       new(squares, blank, nil, @heuristic)
     end
   end
 
+  # generates the states of the puzzle based on current input
   def generateStates
     states = [ ]
     states << west  if west?
@@ -31,6 +36,8 @@ class PuzzleNode
     states.shuffle
   end
 
+  # moves the 0 (blank) tile to the next position based on the search
+  # output, and forms the next square mapping.
   def moveBlankTo to_row, to_col, move
     val  = Marshal.load(Marshal.dump(@value))
     row_1, col_1 = @blank
